@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>BUI Attendance</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 520px; margin: 40px auto; }
+    input, button { font-size: 18px; padding: 10px; width: 100%; margin-top: 10px; }
+    .msg { padding: 10px; margin: 10px 0; border-radius: 6px; }
+    .success { background: #e7f7ea; }
+    .error { background: #fde8e8; }
+    .small { color: #666; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>BUI Attendance</h1>
+  <p class="small">Today’s sheet: <b>{{ today_sheet }}</b></p>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="msg {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST">
+    <label>Enter your full name:</label>
+    <input name="name" autocomplete="off" autofocus />
+    <button type="submit">Submit</button>
+  </form>
+
+  <p class="small">Admin? Go to <a href="/admin">/admin</a></p>
+</body>
+</html>
